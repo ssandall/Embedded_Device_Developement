@@ -196,22 +196,18 @@ class Calendar(Frame):
         self.degreeFrm = Frame(self, bg="black")
         self.degreeFrm.pack(side=BOTTOM, anchor=E)
 
-
-        self.post1Lbl = Label(self.degreeFrm, font=('Helvetica', small_text_size), fg="white", bg="black")
-        self.post1Lbl.pack(side=RIGHT, anchor=N)
-
-
         self.post1Lbl = Label(self, font=('Helvetica', medium_text_size), fg="white", bg="black")
         self.post1Lbl.pack(side=RIGHT, anchor=E)
 
-        self.post2Lbl = Label(self.degreeFrm, font=('Helvetica', small_text_size), fg="white", bg="black")
-        self.post2Lbl.pack(side=RIGHT, anchor=N)
+        self.post2Lbl = Label(self, font=('Helvetica', medium_text_size), fg="white", bg="black")
+        self.post2Lbl.pack(side=RIGHT, anchor=E)
 
-        self.post3Lbl = Label(self.degreeFrm, font=('Helvetica', small_text_size), fg="white", bg="black")
-        self.post3Lbl.pack(side=RIGHT, anchor=N)
+        self.post3Lbl = Label(self, font=('Helvetica', medium_text_size), fg="white", bg="black")
+        self.post3Lbl.pack(side=RIGHT, anchor=E)
 
-        self.post4Lbl = Label(self.degreeFrm, font=('Helvetica', small_text_size), fg="white", bg="black")
-        self.post4Lbl.pack(side=RIGHT, anchor=N)
+        self.post4Lbl = Label(self, font=('Helvetica', medium_text_size), fg="white", bg="black")
+        self.post4Lbl.pack(side=RIGHT, anchor=E)
+
 
         self.get_reddit()
 
