@@ -6,6 +6,7 @@ import requests
 import json
 import traceback
 import feedparser
+import urllib2
 
 from PIL import Image, ImageTk
 from contextlib import contextmanager
@@ -16,11 +17,8 @@ ui_locale = '' # e.g. 'fr_FR' fro French, '' as default
 time_format = 12 # 12 or 24
 date_format = "%b %d, %Y" # check python doc for strftime() for options
 news_country_code = 'us'
-weather_api_token = '<TOKEN>' # create account at https://darksky.net/dev/
-weather_lang = 'en' # see https://darksky.net/dev/docs/forecast for full list of language parameters values
-weather_unit = 'us' # see https://darksky.net/dev/docs/forecast for full list of unit parameters values
-latitude = None # Set this if IP location lookup does not work for you (must be a string)
-longitude = None # Set this if IP location lookup does not work for you (must be a string)
+READ_API_KEY='D71A7607GOWJSZ6D'
+CHANNEL_ID = 502804
 xlarge_text_size = 94
 large_text_size = 48
 medium_text_size = 28
@@ -121,16 +119,25 @@ class Weather(Frame):
 
     def get_local_weather(self):
         try:
-
-            #Read thingspeakAPI
-
             degree_sign = u'\N{DEGREE SIGN}'
-            #tempval = STUFF
-            #humidval = STUFF
-            #uvval = STUFF
-            #apptempval = STUFF
+            tempval = ''
+            humidval = ''
+            uvval = ''
+            apptempval = ''
+
+            conn = urllib2.urlopen("http://api.thingspeak.com/channels/%s/feeds/last.json?api_key=%s" \
+                           % (CHANNEL_ID,READ_API_KEY))
+
+            response = conn.read()
+            data=json.loads(response)
+            conn.close()
+
+            tempval = "%.2f%s" % (float(int(data['field1'])), degree_sign)
+            humidval = "%.2f%s" % (float(int(data['field2'])), "%\ Humidity")
+            uvval = "%s%s" % (int(data['field3']), "UV Level")
+            apptempval = "%.2f%s" % (float(int(data['field4'])), degree_sign)
+            
             '''
-            temperature2 = "%s%s" % (str(int(weather_obj['currently']['temperature'])), degree_sign)
             currently2 = weather_obj['currently']['summary']
             forecast2 = weather_obj["hourly"]["summary"]
 
@@ -165,6 +172,10 @@ class Weather(Frame):
             if self.uv != None
                 self.uv = uvval
                 self.uvLbl.config(text=uvval)
+
+            if self.apparenttemp != None
+                self.apparenttemp = apptempval
+                self.apparenttempLbl.config(text=apptempval)
 
         except Exception as e:
             traceback.print_exc()
