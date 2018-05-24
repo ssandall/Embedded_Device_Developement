@@ -133,9 +133,9 @@ class Weather(Frame):
             conn.close()
 
             tempval = "%.2f%s" % (float(str(data['field1'])), degree_sign)
-            humidval = "%.2f%s" % (float(str(data['field2'])), "% Humidity")
-            uvval = "%s%s" % (int(data['field3']), "UV Level")
-            apptempval = "%.2f%s" % (float(str(data['field4'])), degree_sign)
+            humidval = "%s%.2f%s" % ("Humidity ", float(str(data['field2'])), "%")
+            uvval = "%s%s" % ("UV Level ", int(data['field3']))
+            apptempval = "%s%.2f%s" % ("Feel's like ", float(str(data['field4'])), degree_sign)
 
             '''
             currently2 = weather_obj['currently']['summary']
