@@ -209,8 +209,11 @@ class Calendar(Frame):
         self.calendarEventContainer = Frame(self, bg='black')
         self.calendarEventContainer.pack(side=TOP, anchor=E)
 
-        self.postLbl = Label(self, text=self.title, font=('Helvetica', medium_text_size), fg="white", bg="black")
-        self.postLbl.pack(side=TOP, anchor=E)
+        self.redditLbl = Label(self, text=self.title, font=('Helvetica', medium_text_size), fg="white", bg="black")
+        self.redditLbl.pack(side=TOP, anchor=E)
+
+        self.postLbl = Label(self, font=('Helvetica', medium_text_size),fg="white",bg="black")
+        self.postLbl.pack(side=TOP, anchor=W)
 
         self.get_reddits()
 
@@ -237,12 +240,6 @@ class Calendar(Frame):
             traceback.print_exc()
             print "Error: %s. Cannon get posts" %d
 
-class CalendarEvent(Frame):
-    def __init__(self, parent, event_name="Event 1"):
-        Frame.__init__(self, parent, bg='black')
-        self.mainPost = event_name
-        self.mainPostLbl = Label(self, text=self.eventName, font=('Helvetica', small_text_size), fg="white", bg="black")
-        self.mainPostLbl.pack(side=TOP, anchor=E)
 class FullscreenWindow:
 
     def __init__(self):
