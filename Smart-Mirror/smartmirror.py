@@ -7,6 +7,7 @@ import json
 import traceback
 import feedparser
 import urllib2
+import praw
 
 from PIL import Image, ImageTk
 from contextlib import contextmanager
@@ -32,9 +33,6 @@ def setlocale(name): #thread proof function to work with locale
             yield locale.setlocale(locale.LC_ALL, name)
         finally:
             locale.setlocale(locale.LC_ALL, saved)
-
-# maps open weather icons to
-# icon reading is not impacted by the 'lang' parameter
 icon_lookup = {
     'clear-day': "assets/Sun.png",  # clear sky day
     'wind': "assets/Wind.png",   #wind
@@ -50,7 +48,6 @@ icon_lookup = {
     'tornado': "assests/Tornado.png",    # tornado
     'hail': "assests/Hail.png"  # hail
 }
-
 
 class Clock(Frame):
     def __init__(self, parent, *args, **kwargs):
@@ -89,8 +86,6 @@ class Clock(Frame):
                 self.date1 = date2
                 self.dateLbl.config(text=date2)
                 self.timeLbl.after(200, self.tick)
-
-
 class Weather(Frame):
     def __init__(self, parent, *args, **kwargs):
         Frame.__init__(self, parent, bg='black')
@@ -158,7 +153,6 @@ class Weather(Frame):
             print "Error: %s. Cannot get weather." % e
 
         self.after(500, self.get_local_weather)
-
 class News(Frame):
     def __init__(self, parent, *args, **kwargs):
         Frame.__init__(self, parent, *args, **kwargs)
@@ -190,8 +184,6 @@ class News(Frame):
             print "Error: %s. Cannot get news." % e
 
         self.after(600000, self.get_headlines)
-
-
 class NewsHeadline(Frame):
     def __init__(self, parent, event_name=""):
         Frame.__init__(self, parent, bg='black')
@@ -208,39 +200,44 @@ class NewsHeadline(Frame):
         self.eventName = event_name
         self.eventNameLbl = Label(self, text=self.eventName, font=('Helvetica', small_text_size), fg="white", bg="black")
         self.eventNameLbl.pack(side=LEFT, anchor=N)
-
-
 class Calendar(Frame):
     def __init__(self, parent, *args, **kwargs):
         Frame.__init__(self, parent, bg='black')
-        self.title = 'Calendar Events'
-        self.calendarLbl = Label(self, text=self.title, font=('Helvetica', medium_text_size), fg="white", bg="black")
-        self.calendarLbl.pack(side=TOP, anchor=E)
+        self.title = 'Reddit News'
+
         self.calendarEventContainer = Frame(self, bg='black')
         self.calendarEventContainer.pack(side=TOP, anchor=E)
-        self.get_events()
 
-    def get_events(self):
-        #TODO: implement this method
-        # reference https://developers.google.com/google-apps/calendar/quickstart/python
+        self.postLbl = Label(self, text=self.title, font=('Helvetica', medium_text_size), fg="white", bg="black")
+        self.postLbl.pack(side=TOP, anchor=E)
 
-        # remove all children
-        for widget in self.calendarEventContainer.winfo_children():
-            widget.destroy()
+        self.get_reddits()
 
-        calendar_event = CalendarEvent(self.calendarEventContainer)
-        calendar_event.pack(side=TOP, anchor=E)
-        pass
+    def get_reddits(self):
+        try:
+            reddit = praw.Reddit(client_id = '44Ludf0cmZiLTg',
+                                                client_secret = 'NxpTIa74hi4udO6Mi3mSaJuNjRU',
+                                                username = 'Web_Hoon',
+                                                password = 'Sasha18898',
+                                                user_agent = 'smartmirrorapi')
 
+            subreddit = reddit.subreddit('python')
+            hot_python = subreddit.hot(limit=1)
+
+            for submission in hot_python:
+                if not submission.stickied:
+                    post = submission.title
+
+        except Exception as d:
+            traceback.print_exc()
+            print "Error: %s. Cannon get posts" %d
 
 class CalendarEvent(Frame):
     def __init__(self, parent, event_name="Event 1"):
         Frame.__init__(self, parent, bg='black')
-        self.eventName = event_name
-        self.eventNameLbl = Label(self, text=self.eventName, font=('Helvetica', small_text_size), fg="white", bg="black")
-        self.eventNameLbl.pack(side=TOP, anchor=E)
-
-
+        self.mainPost = post
+        self.mainPostLbl = Label(self, text=self.eventName, font=('Helvetica', small_text_size), fg="white", bg="black")
+        self.mainPostLbl.pack(side=TOP, anchor=E)
 class FullscreenWindow:
 
     def __init__(self):
