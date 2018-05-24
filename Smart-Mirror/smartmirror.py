@@ -203,42 +203,43 @@ class NewsHeadline(Frame):
 class Calendar(Frame):
     def __init__(self, parent, *args, **kwargs):
         Frame.__init__(self, parent, bg='black')
-        self.title = 'Reddit News'
         self.post = ''
 
-        self.calendarEventContainer = Frame(self, bg='black')
-        self.calendarEventContainer.pack(side=TOP, anchor=E)
+        self.degreeFrm = Frame(self, bg="black")
+        self.degreeFrm.pack(side=BOTTOM, anchor=W)
 
-        self.redditLbl = Label(self, text=self.title, font=('Helvetica', medium_text_size), fg="white", bg="black")
-        self.redditLbl.pack(side=TOP, anchor=E)
+        self.postLbl = Label(self.degreeFrm, font=('Helvetica', xlarge_text_size), fg="white", bg="black")
+        self.postLbl.pack(side=RIGHT, anchor=N)
 
-        self.postLbl = Label(self, font=('Helvetica', medium_text_size),fg="white",bg="black")
-        self.postLbl.pack(side=TOP, anchor=W)
+        self.get_reddit()
 
-        self.get_reddits()
-
-    def get_reddits(self):
+    def get_reddit(self):
         try:
-            reddit = praw.Reddit(client_id = '44Ludf0cmZiLTg',
-                                                client_secret = 'NxpTIa74hi4udO6Mi3mSaJuNjRU',
-                                                username = 'Web_Hoon',
-                                                password = 'Sasha18898',
-                                                user_agent = 'smartmirrorapi')
+            tempval = ''
+
+            #PRAW HERE
+            reddit = praw.Reddit(client_id='44Ludf0cmZiLTg',
+                     client_secret='NxpTIa74hi4udO6Mi3mSaJuNjRU', password='Sasha18898',
+                     user_agent='redditapi', username='Web_Hoon')
 
             subreddit = reddit.subreddit('python')
-            hot_python = subreddit.hot(limit=3)
+            hot_python = subreddit.hot(limit=1)
 
             for submission in hot_python:
                 if not submission.stickied:
-                    post = "%s" % (str(submission.title))
+                    post = (submission.title)
+
+            postval = "%s" % (post)
 
             if self.post != None:
-                self.post = post
-                self.postLbl.config(text=post)
+                self.post = postval
+                self.postLbl.config(text=tempval)
 
         except Exception as d:
             traceback.print_exc()
-            print "Error: %s. Cannon get posts" %d
+            print "Error: %s. Cannot get weather." % d
+
+        self.after(500, self.get_local_weather)
 
 class FullscreenWindow:
 
