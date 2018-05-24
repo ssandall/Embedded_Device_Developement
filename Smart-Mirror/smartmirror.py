@@ -126,10 +126,10 @@ class Weather(Frame):
             apptempval = ''
 
             conn = urllib2.urlopen("http://api.thingspeak.com/channels/%s/feeds/last.json?api_key=%s" \
-                           % (CHANNEL_ID,READ_API_KEY))
+                           % (CHANNEL_ID, READ_API_KEY))
 
             response = conn.read()
-            data=json.loads(response)
+            data = json.loads(response)
             conn.close()
 
             tempval = "%.2f%s" % (float(str(data['field1'])), degree_sign)
@@ -137,30 +137,6 @@ class Weather(Frame):
             uvval = "%s%s" % ("UV Level ", int(data['field3']))
             apptempval = "%s%.2f%s" % ("Feel's like ", float(str(data['field4'])), degree_sign)
 
-            '''
-            currently2 = weather_obj['currently']['summary']
-            forecast2 = weather_obj["hourly"]["summary"]
-
-            icon_id = weather_obj['currently']['icon']
-            icon2 = None
-
-            if icon_id in icon_lookup:
-                icon2 = icon_lookup[icon_id]
-
-            if icon2 is not None:
-                if self.icon != icon2:
-                    self.icon = icon2
-                    image = Image.open(icon2)
-                    image = image.resize((100, 100), Image.ANTIALIAS)
-                    image = image.convert('RGB')
-                    photo = ImageTk.PhotoImage(image)
-
-                    self.iconLbl.config(image=photo)
-                    self.iconLbl.image = photo
-            else:
-                # remove image
-                self.iconLbl.config(image='')
-            '''
             if self.temperature != None:
                 self.temperature = tempval
                 self.temperatureLbl.config(text=tempval)
@@ -177,11 +153,7 @@ class Weather(Frame):
                 self.apparenttemp = apptempval
                 self.apparenttempLbl.config(text=apptempval)
 
-        except Exception as e:
-            traceback.print_exc()
-            print "Error: %s. Cannot get weather." % e
-
-        self.after(500, self.get_local_weather)
+    self.after(500, self.get_local_weather)
 
 class News(Frame):
     def __init__(self, parent, *args, **kwargs):
