@@ -222,7 +222,7 @@ class Calendar(Frame):
                                                 user_agent = 'smartmirrorapi')
 
             subreddit = reddit.subreddit('python')
-            hot_python = subreddit.hot(limit=1)
+            hot_python = subreddit.hot(limit=3)
 
             for submission in hot_python:
                 if not submission.stickied:
