@@ -153,7 +153,11 @@ class Weather(Frame):
                 self.apparenttemp = apptempval
                 self.apparenttempLbl.config(text=apptempval)
 
-                self.after(500, self.get_local_weather)
+        except Exception as e:
+            traceback.print_exc()
+            print "Error: %s. Cannot get weather." % e
+
+        self.after(500, self.get_local_weather)
 
 class News(Frame):
     def __init__(self, parent, *args, **kwargs):
