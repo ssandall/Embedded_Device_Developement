@@ -3,9 +3,9 @@ import locale
 import threading
 import time
 import requests
+import feedparser
 import json
 import traceback
-import feedparser
 import urllib2
 import praw
 
@@ -254,7 +254,7 @@ class Calendar(Frame):
                 if not submission.stickied:
                     postval4 = "%s" % (submission.title)
 
-            if self.post1 != None:
+            #if self.post1 != None:
                 self.post1 = postval1
                 self.post1Lbl.config(text=postval1)
 
@@ -272,7 +272,7 @@ class Calendar(Frame):
 
         except Exception as d:
             traceback.print_exc()
-            print "Error: %s. Cannot get weather." % d
+            print "Error: %s. Cannot get reddit feed." % d
 
         self.after(500, self.get_reddit)
 
