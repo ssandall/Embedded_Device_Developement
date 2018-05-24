@@ -132,10 +132,10 @@ class Weather(Frame):
             data=json.loads(response)
             conn.close()
 
-            tempval = "%.2f%s" % (float(int(data['field1'])), degree_sign)
-            humidval = "%.2f%s" % (float(int(data['field2'])), "%\ Humidity")
+            tempval = "%.2f%s" % (float(str(data['field1'])), degree_sign)
+            humidval = "%.2f%s" % (float(str(data['field2'])), "%\ Humidity")
             uvval = "%s%s" % (int(data['field3']), "UV Level")
-            apptempval = "%.2f%s" % (float(int(data['field4'])), degree_sign)
+            apptempval = "%.2f%s" % (float(str(data['field4'])), degree_sign)
 
             '''
             currently2 = weather_obj['currently']['summary']
