@@ -19,10 +19,10 @@ date_format = "%b %d, %Y" # check python doc for strftime() for options
 news_country_code = 'us'
 READ_API_KEY='D71A7607GOWJSZ6D'
 CHANNEL_ID = 502804
-xlarge_text_size = 94
-large_text_size = 48
-medium_text_size = 28
-small_text_size = 18
+xlarge_text_size = 48
+large_text_size = 28
+medium_text_size = 18
+small_text_size = 8
 
 @contextmanager
 def setlocale(name): #thread proof function to work with locale
