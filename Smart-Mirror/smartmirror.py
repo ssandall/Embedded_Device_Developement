@@ -204,6 +204,7 @@ class Calendar(Frame):
     def __init__(self, parent, *args, **kwargs):
         Frame.__init__(self, parent, bg='black')
         self.title = 'Reddit News'
+        self.post = ''
 
         self.calendarEventContainer = Frame(self, bg='black')
         self.calendarEventContainer.pack(side=TOP, anchor=E)
@@ -228,6 +229,10 @@ class Calendar(Frame):
                 if not submission.stickied:
                     post = submission.title
 
+            if self.post != None:
+                self.post = post
+                self.postLbl.config(text=post)
+
         except Exception as d:
             traceback.print_exc()
             print "Error: %s. Cannon get posts" %d
@@ -235,7 +240,7 @@ class Calendar(Frame):
 class CalendarEvent(Frame):
     def __init__(self, parent, event_name="Event 1"):
         Frame.__init__(self, parent, bg='black')
-        self.mainPost = post
+        self.mainPost = event_name
         self.mainPostLbl = Label(self, text=self.eventName, font=('Helvetica', small_text_size), fg="white", bg="black")
         self.mainPostLbl.pack(side=TOP, anchor=E)
 class FullscreenWindow:
