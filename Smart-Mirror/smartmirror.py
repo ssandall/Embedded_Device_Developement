@@ -136,7 +136,7 @@ class Weather(Frame):
             humidval = "%.2f%s" % (float(int(data['field2'])), "%\ Humidity")
             uvval = "%s%s" % (int(data['field3']), "UV Level")
             apptempval = "%.2f%s" % (float(int(data['field4'])), degree_sign)
-            
+
             '''
             currently2 = weather_obj['currently']['summary']
             forecast2 = weather_obj["hourly"]["summary"]
@@ -161,19 +161,19 @@ class Weather(Frame):
                 # remove image
                 self.iconLbl.config(image='')
             '''
-            if self.temperature != None
+            if self.temperature != None:
                 self.temperature = tempval
                 self.temperatureLbl.config(text=tempval)
 
-            if self.humidity != None
+            if self.humidity != None:
                 self.humidity = humidval
                 self.humidityLbl.config(text=humidval)
 
-            if self.uv != None
+            if self.uv != None:
                 self.uv = uvval
                 self.uvLbl.config(text=uvval)
 
-            if self.apparenttemp != None
+            if self.apparenttemp != None:
                 self.apparenttemp = apptempval
                 self.apparenttempLbl.config(text=apptempval)
 
