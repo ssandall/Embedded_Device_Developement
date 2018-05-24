@@ -200,6 +200,7 @@ class NewsHeadline(Frame):
         self.eventName = event_name
         self.eventNameLbl = Label(self, text=self.eventName, font=('Helvetica', small_text_size), fg="white", bg="black")
         self.eventNameLbl.pack(side=LEFT, anchor=N)
+'''
 class Calendar(Frame):
     def __init__(self, parent, *args, **kwargs):
         Frame.__init__(self, parent, bg='black')
@@ -280,7 +281,7 @@ class Calendar(Frame):
             print "Error: %s. Cannot get reddit feed." % d
 
         self.after(500, self.get_reddit)
-
+'''
 class FullscreenWindow:
 
     def __init__(self):
