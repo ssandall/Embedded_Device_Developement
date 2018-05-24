@@ -201,7 +201,7 @@ class NewsHeadline(Frame):
         self.eventNameLbl = Label(self, text=self.eventName, font=('Helvetica', small_text_size), fg="white", bg="black")
         self.eventNameLbl.pack(side=LEFT, anchor=N)
 '''
-class Calendar(Frame):
+class Reddit(Frame):
     def __init__(self, parent, *args, **kwargs):
         Frame.__init__(self, parent, bg='black')
         self.post1 = ''
@@ -212,10 +212,10 @@ class Calendar(Frame):
         self.degreeFrm = Frame(self, bg="black")
         self.degreeFrm.pack(side=BOTTOM, anchor=E)
 
-        '''
+
         self.post1Lbl = Label(self.degreeFrm, font=('Helvetica', xlarge_text_size), fg="white", bg="black")
         self.post1Lbl.pack(side=RIGHT, anchor=N)
-        '''
+        
 
         self.post1Lbl = Label(self, font=('Helvetica', large_text_size), fg="white", bg="black")
         self.post1Lbl.pack(side=RIGHT, anchor=E)
