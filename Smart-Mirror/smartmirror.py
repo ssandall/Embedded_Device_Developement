@@ -33,22 +33,6 @@ def setlocale(name): #thread proof function to work with locale
             yield locale.setlocale(locale.LC_ALL, name)
         finally:
             locale.setlocale(locale.LC_ALL, saved)
-icon_lookup = {
-    'clear-day': "assets/Sun.png",  # clear sky day
-    'wind': "assets/Wind.png",   #wind
-    'cloudy': "assets/Cloud.png",  # cloudy day
-    'partly-cloudy-day': "assets/PartlySunny.png",  # partly cloudy day
-    'rain': "assets/Rain.png",  # rain day
-    'snow': "assets/Snow.png",  # snow day
-    'snow-thin': "assets/Snow.png",  # sleet day
-    'fog': "assets/Haze.png",  # fog day
-    'clear-night': "assets/Moon.png",  # clear sky night
-    'partly-cloudy-night': "assets/PartlyMoon.png",  # scattered clouds night
-    'thunderstorm': "assets/Storm.png",  # thunderstorm
-    'tornado': "assests/Tornado.png",    # tornado
-    'hail': "assests/Hail.png"  # hail
-}
-
 class Clock(Frame):
     def __init__(self, parent, *args, **kwargs):
         Frame.__init__(self, parent, bg='black')
@@ -215,7 +199,7 @@ class Reddit(Frame):
 
         self.post1Lbl = Label(self.degreeFrm, font=('Helvetica', xlarge_text_size), fg="white", bg="black")
         self.post1Lbl.pack(side=RIGHT, anchor=N)
-        
+
 
         self.post1Lbl = Label(self, font=('Helvetica', large_text_size), fg="white", bg="black")
         self.post1Lbl.pack(side=RIGHT, anchor=E)
