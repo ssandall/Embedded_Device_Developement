@@ -73,7 +73,7 @@ class Clock(Frame):
 
     def tick(self):
         with setlocale(ui_locale):
-            if time_format == 12:
+            if time_format == 24:
                 time2 = time.strftime('%I:%M %p') #hour in 12h format
             else:
                 time2 = time.strftime('%H:%M') #hour in 24h format
@@ -90,69 +90,46 @@ class Clock(Frame):
             if date2 != self.date1:
                 self.date1 = date2
                 self.dateLbl.config(text=date2)
-            # calls itself every 200 milliseconds
-            # to update the time display as needed
-            # could use >200 ms, but display gets jerky
-            self.timeLbl.after(200, self.tick)
+                self.timeLbl.after(200, self.tick)
 
 
 class Weather(Frame):
     def __init__(self, parent, *args, **kwargs):
         Frame.__init__(self, parent, bg='black')
         self.temperature = ''
-        self.forecast = ''
-        self.location = ''
-        self.currently = ''
+        self.humidity = ''
+        self.uv = ''
+        self.apparenttemp = ''
         self.icon = ''
+
         self.degreeFrm = Frame(self, bg="black")
         self.degreeFrm.pack(side=TOP, anchor=W)
+
         self.temperatureLbl = Label(self.degreeFrm, font=('Helvetica', xlarge_text_size), fg="white", bg="black")
         self.temperatureLbl.pack(side=LEFT, anchor=N)
-        self.iconLbl = Label(self.degreeFrm, bg="black")
-        self.iconLbl.pack(side=LEFT, anchor=N, padx=20)
-        self.currentlyLbl = Label(self, font=('Helvetica', medium_text_size), fg="white", bg="black")
-        self.currentlyLbl.pack(side=TOP, anchor=W)
-        self.forecastLbl = Label(self, font=('Helvetica', small_text_size), fg="white", bg="black")
-        self.forecastLbl.pack(side=TOP, anchor=W)
-        self.locationLbl = Label(self, font=('Helvetica', small_text_size), fg="white", bg="black")
-        self.locationLbl.pack(side=TOP, anchor=W)
-        self.get_weather()
 
-    def get_ip(self):
-        try:
-            ip_url = "http://jsonip.com/"
-            req = requests.get(ip_url)
-            ip_json = json.loads(req.text)
-            return ip_json['ip']
-        except Exception as e:
-            traceback.print_exc()
-            return "Error: %s. Cannot get ip." % e
+        self.humidityLbl = Label(self.degreeFrm, bg="black")
+        self.humidityLbl.pack(side=LEFT, anchor=N, padx=20)
 
-    def get_weather(self):
+        self.uvLbl = Label(self, font=('Helvetica', medium_text_size), fg="white", bg="black")
+        self.uvLbl.pack(side=TOP, anchor=W)
+
+        self.apparenttempLbl = Label(self, font=('Helvetica', small_text_size), fg="white", bg="black")
+        self.apparenttempLbl.pack(side=TOP, anchor=W)
+
+        self.get_local_weather()
+
+    def get_local_weather(self):
         try:
 
-            if latitude is None and longitude is None:
-                # get location
-                location_req_url = "http://freegeoip.net/json/%s" % self.get_ip()
-                r = requests.get(location_req_url)
-                location_obj = json.loads(r.text)
+            #Read thingspeakAPI
 
-                lat = location_obj['latitude']
-                lon = location_obj['longitude']
-
-                location2 = "%s, %s" % (location_obj['city'], location_obj['region_code'])
-
-                # get weather
-                weather_req_url = "https://api.darksky.net/forecast/%s/%s,%s?lang=%s&units=%s" % (weather_api_token, lat,lon,weather_lang,weather_unit)
-            else:
-                location2 = ""
-                # get weather
-                weather_req_url = "https://api.darksky.net/forecast/%s/%s,%s?lang=%s&units=%s" % (weather_api_token, latitude, longitude, weather_lang, weather_unit)
-
-            r = requests.get(weather_req_url)
-            weather_obj = json.loads(r.text)
-
-            degree_sign= u'\N{DEGREE SIGN}'
+            degree_sign = u'\N{DEGREE SIGN}'
+            #tempval = STUFF
+            #humidval = STUFF
+            #uvval = STUFF
+            #apptempval = STUFF
+            '''
             temperature2 = "%s%s" % (str(int(weather_obj['currently']['temperature'])), degree_sign)
             currently2 = weather_obj['currently']['summary']
             forecast2 = weather_obj["hourly"]["summary"]
@@ -176,33 +153,24 @@ class Weather(Frame):
             else:
                 # remove image
                 self.iconLbl.config(image='')
+            '''
+            if self.temperature != None
+                self.temperature = tempval
+                self.temperatureLbl.config(text=tempval)
 
-            if self.currently != currently2:
-                self.currently = currently2
-                self.currentlyLbl.config(text=currently2)
-            if self.forecast != forecast2:
-                self.forecast = forecast2
-                self.forecastLbl.config(text=forecast2)
-            if self.temperature != temperature2:
-                self.temperature = temperature2
-                self.temperatureLbl.config(text=temperature2)
-            if self.location != location2:
-                if location2 == ", ":
-                    self.location = "Cannot Pinpoint Location"
-                    self.locationLbl.config(text="Cannot Pinpoint Location")
-                else:
-                    self.location = location2
-                    self.locationLbl.config(text=location2)
+            if self.humidity != None
+                self.humidity = humidval
+                self.humidityLbl.config(text=humidval)
+
+            if self.uv != None
+                self.uv = uvval
+                self.uvLbl.config(text=uvval)
+
         except Exception as e:
             traceback.print_exc()
             print "Error: %s. Cannot get weather." % e
 
-        self.after(600000, self.get_weather)
-
-    @staticmethod
-    def convert_kelvin_to_fahrenheit(kelvin_temp):
-        return 1.8 * (kelvin_temp - 273) + 32
-
+        self.after(500, self.get_weather)
 
 class News(Frame):
     def __init__(self, parent, *args, **kwargs):
