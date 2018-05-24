@@ -14,9 +14,9 @@ from contextlib import contextmanager
 
 LOCALE_LOCK = threading.Lock()
 
-ui_locale = '' # e.g. 'fr_FR' fro French, '' as default
+ui_locale = ''
 time_format = 24 # 12 or 24
-date_format = "%b %d, %Y" # check python doc for strftime() for options
+date_format = "%b %d, %Y"
 news_country_code = 'us'
 READ_API_KEY = 'D71A7607GOWJSZ6D'
 CHANNEL_ID = 502804
@@ -26,7 +26,7 @@ medium_text_size = 18
 small_text_size = 8
 
 @contextmanager
-def setlocale(name): #thread proof function to work with locale
+def setlocale(name):
     with LOCALE_LOCK:
         saved = locale.setlocale(locale.LC_ALL)
         try:
@@ -184,8 +184,8 @@ class NewsHeadline(Frame):
         self.eventName = event_name
         self.eventNameLbl = Label(self, text=self.eventName, font=('Helvetica', small_text_size), fg="white", bg="black")
         self.eventNameLbl.pack(side=LEFT, anchor=N)
-'''
-class Reddit(Frame):
+
+class Calendar(Frame):
     def __init__(self, parent, *args, **kwargs):
         Frame.__init__(self, parent, bg='black')
         self.post1 = ''
@@ -265,7 +265,7 @@ class Reddit(Frame):
             print "Error: %s. Cannot get reddit feed." % d
 
         self.after(500, self.get_reddit)
-'''
+
 class FullscreenWindow:
 
     def __init__(self):
@@ -288,8 +288,8 @@ class FullscreenWindow:
         self.news = News(self.bottomFrame)
         self.news.pack(side=LEFT, anchor=S, padx=100, pady=60)
         # calender - removing for now
-        # self.calender = Calendar(self.bottomFrame)
-        # self.calender.pack(side = RIGHT, anchor=S, padx=100, pady=60)
+        self.calender = Calendar(self.bottomFrame)
+        self.calender.pack(side = RIGHT, anchor=S, padx=100, pady=60)
 
     def toggle_fullscreen(self, event=None):
         self.state = not self.state  # Just toggling the boolean
