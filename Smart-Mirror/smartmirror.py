@@ -209,7 +209,7 @@ class Calendar(Frame):
         self.post4 = ''
 
         self.degreeFrm = Frame(self, bg="black")
-        self.degreeFrm.pack(side=BOTTOM, anchor=W)
+        self.degreeFrm.pack(side=BOTTOM, anchor=E)
 
         self.post1Lbl = Label(self.degreeFrm, font=('Helvetica', xlarge_text_size), fg="white", bg="black")
         self.post1Lbl.pack(side=RIGHT, anchor=N)
