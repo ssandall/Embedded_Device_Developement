@@ -106,13 +106,13 @@ class Weather(Frame):
         self.temperatureLbl = Label(self.degreeFrm, font=('Helvetica', xlarge_text_size), fg="white", bg="black")
         self.temperatureLbl.pack(side=LEFT, anchor=N)
 
-        self.humidityLbl = Label(self, fg="white",bg="black")
-        self.humidityLbl.pack(side=BOTTOM, anchor=N)
-
-        self.uvLbl = Label(self, font=('Helvetica', medium_text_size), fg="white", bg="black")
+        self.uvLbl = Label(self, font=('Helvetica', large_text_size), fg="white", bg="black")
         self.uvLbl.pack(side=TOP, anchor=W)
 
-        self.apparenttempLbl = Label(self, font=('Helvetica', small_text_size), fg="white", bg="black")
+        self.humidityLbl = Label(self, font=('Helvetica', medium_text_size),fg="white",bg="black")
+        self.humidityLbl.pack(side=TOP, anchor=W)
+
+        self.apparenttempLbl = Label(self, font=('Helvetica', medium_text_size), fg="white", bg="black")
         self.apparenttempLbl.pack(side=TOP, anchor=W)
 
         self.get_local_weather()
