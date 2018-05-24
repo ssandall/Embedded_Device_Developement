@@ -107,7 +107,7 @@ class Weather(Frame):
         self.temperatureLbl.pack(side=LEFT, anchor=N)
 
         self.humidityLbl = Label(self.degreeFrm, fg="white",bg="black")
-        self.humidityLbl.pack(side=LEFT, anchor=N, padx=20)
+        self.humidityLbl.pack(side=LEFT, anchor=W, padx=20)
 
         self.uvLbl = Label(self, font=('Helvetica', medium_text_size), fg="white", bg="black")
         self.uvLbl.pack(side=TOP, anchor=W)
