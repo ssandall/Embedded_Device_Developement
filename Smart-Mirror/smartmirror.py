@@ -14,10 +14,10 @@ from contextlib import contextmanager
 LOCALE_LOCK = threading.Lock()
 
 ui_locale = '' # e.g. 'fr_FR' fro French, '' as default
-time_format = 12 # 12 or 24
+time_format = 24 # 12 or 24
 date_format = "%b %d, %Y" # check python doc for strftime() for options
 news_country_code = 'us'
-READ_API_KEY='D71A7607GOWJSZ6D'
+READ_API_KEY = 'D71A7607GOWJSZ6D'
 CHANNEL_ID = 502804
 xlarge_text_size = 48
 large_text_size = 28
@@ -106,7 +106,7 @@ class Weather(Frame):
         self.temperatureLbl = Label(self.degreeFrm, font=('Helvetica', xlarge_text_size), fg="white", bg="black")
         self.temperatureLbl.pack(side=LEFT, anchor=N)
 
-        self.humidityLbl = Label(self.degreeFrm, bg="black")
+        self.humidityLbl = Label(self.degreeFrm, fg="white",bg="black")
         self.humidityLbl.pack(side=LEFT, anchor=N, padx=20)
 
         self.uvLbl = Label(self, font=('Helvetica', medium_text_size), fg="white", bg="black")
