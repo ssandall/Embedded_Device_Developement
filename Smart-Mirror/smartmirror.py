@@ -153,7 +153,7 @@ class Weather(Frame):
                 self.apparenttemp = apptempval
                 self.apparenttempLbl.config(text=apptempval)
 
-    self.after(500, self.get_local_weather)
+                self.after(500, self.get_local_weather)
 
 class News(Frame):
     def __init__(self, parent, *args, **kwargs):
