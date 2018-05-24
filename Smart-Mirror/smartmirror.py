@@ -211,8 +211,13 @@ class Calendar(Frame):
         self.degreeFrm = Frame(self, bg="black")
         self.degreeFrm.pack(side=BOTTOM, anchor=E)
 
+        '''
         self.post1Lbl = Label(self.degreeFrm, font=('Helvetica', xlarge_text_size), fg="white", bg="black")
         self.post1Lbl.pack(side=RIGHT, anchor=N)
+        '''
+
+        self.post1Lbl = Label(self, font=('Helvetica', large_text_size), fg="white", bg="black")
+        self.post1Lbl.pack(side=RIGHT, anchor=E)
 
         self.post2Lbl = Label(self.degreeFrm, font=('Helvetica', xlarge_text_size), fg="white", bg="black")
         self.post2Lbl.pack(side=RIGHT, anchor=N)
@@ -254,7 +259,7 @@ class Calendar(Frame):
                 if not submission.stickied:
                     postval4 = "%s" % (submission.title)
 
-            #if self.post1 != None:
+            if self.post1 != None:
                 self.post1 = postval1
                 self.post1Lbl.config(text=postval1)
 
