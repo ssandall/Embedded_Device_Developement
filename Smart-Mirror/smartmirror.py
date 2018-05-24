@@ -227,7 +227,7 @@ class Calendar(Frame):
 
             for submission in hot_python:
                 if not submission.stickied:
-                    post = submission.title
+                    post = "%s" % (str(submission.title))
 
             if self.post != None:
                 self.post = post
