@@ -203,43 +203,78 @@ class NewsHeadline(Frame):
 class Calendar(Frame):
     def __init__(self, parent, *args, **kwargs):
         Frame.__init__(self, parent, bg='black')
-        self.post = ''
+        self.post1 = ''
+        self.post2 = ''
+        self.post3 = ''
+        self.post4 = ''
 
         self.degreeFrm = Frame(self, bg="black")
         self.degreeFrm.pack(side=BOTTOM, anchor=W)
 
-        self.postLbl = Label(self.degreeFrm, font=('Helvetica', xlarge_text_size), fg="white", bg="black")
-        self.postLbl.pack(side=RIGHT, anchor=N)
+        self.post1Lbl = Label(self.degreeFrm, font=('Helvetica', xlarge_text_size), fg="white", bg="black")
+        self.post1Lbl.pack(side=RIGHT, anchor=N)
+
+        self.post2Lbl = Label(self.degreeFrm, font=('Helvetica', xlarge_text_size), fg="white", bg="black")
+        self.post2Lbl.pack(side=RIGHT, anchor=N)
+
+        self.post3Lbl = Label(self.degreeFrm, font=('Helvetica', xlarge_text_size), fg="white", bg="black")
+        self.post3Lbl.pack(side=RIGHT, anchor=N)
+
+        self.post4Lbl = Label(self.degreeFrm, font=('Helvetica', xlarge_text_size), fg="white", bg="black")
+        self.post4Lbl.pack(side=RIGHT, anchor=N)
 
         self.get_reddit()
 
     def get_reddit(self):
         try:
-            tempval = ''
 
-            #PRAW HERE
             reddit = praw.Reddit(client_id='44Ludf0cmZiLTg',
                      client_secret='NxpTIa74hi4udO6Mi3mSaJuNjRU', password='Sasha18898',
                      user_agent='redditapi', username='Web_Hoon')
 
             subreddit = reddit.subreddit('python')
-            hot_python = subreddit.hot(limit=1)
+            hot_python1 = subreddit.hot(limit=3)
+            hot_python2 = subreddit.hot(limit=4)
+            hot_python3 = subreddit.hot(limit=5)
+            hot_python4 = subreddit.hot(limit=6)
 
-            for submission in hot_python:
+            for submission in hot_python1:
                 if not submission.stickied:
-                    post = (submission.title)
+                    postval1 = "%s" % (submission.title)
 
-            postval = "%s" % (post)
+            for submission in hot_python2:
+                if not submission.stickied:
+                    postval2 = "%s" % (submission.title)
 
-            if self.post != None:
-                self.post = postval
-                self.postLbl.config(text=tempval)
+            for submission in hot_python3:
+                if not submission.stickied:
+                    postval3 = "%s" % (submission.title)
+
+            for submission in hot_python4:
+                if not submission.stickied:
+                    postval4 = "%s" % (submission.title)
+
+            if self.post1 != None:
+                self.post1 = postval1
+                self.post1Lbl.config(text=postval1)
+
+            if self.post2 != None:
+                self.post2 = postval2
+                self.post2Lbl.config(text=postval2)
+
+            if self.post3 != None:
+                self.post3 = postval3
+                self.post3Lbl.config(text=postval3)
+
+            if self.post4 != None:
+                self.post4 = postval4
+                self.post4Lbl.config(text=postval4)
 
         except Exception as d:
             traceback.print_exc()
             print "Error: %s. Cannot get weather." % d
 
-        self.after(500, self.get_local_weather)
+        self.after(500, self.get_reddit)
 
 class FullscreenWindow:
 
