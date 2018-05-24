@@ -1,7 +1,3 @@
-# smartmirror.py
-# requirements
-# requests, feedparser, traceback, Pillow
-
 from Tkinter import *
 import locale
 import threading
