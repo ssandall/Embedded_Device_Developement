@@ -15,7 +15,7 @@ from contextlib import contextmanager
 LOCALE_LOCK = threading.Lock()
 
 ui_locale = ''
-time_format = 24 # 12 or 24
+time_format = 12 # 12 or 24
 date_format = "%b %d, %Y"
 news_country_code = 'au'
 READ_API_KEY = 'D71A7607GOWJSZ6D'
@@ -23,7 +23,7 @@ CHANNEL_ID = 502804
 xlarge_text_size = 48
 large_text_size = 28
 medium_text_size = 18
-small_text_size = 12
+small_text_size =
 
 @contextmanager
 def setlocale(name):
@@ -52,7 +52,7 @@ class Clock(Frame):
 
     def tick(self):
         with setlocale(ui_locale):
-            if time_format == 12:
+            if time_format == 24:
                 time2 = time.strftime('%I:%M %p') #hour in 12h format
             else:
                 time2 = time.strftime('%H:%M') #hour in 24h format
