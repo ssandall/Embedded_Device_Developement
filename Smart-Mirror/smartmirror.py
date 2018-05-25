@@ -184,7 +184,7 @@ class NewsHeadline(Frame):
         self.eventName = event_name
         self.eventNameLbl = Label(self, text=self.eventName, font=('Helvetica', small_text_size), fg="white", bg="black")
         self.eventNameLbl.pack(side=LEFT, anchor=N)
-
+'''
 class Reddit(Frame):
     def __init__(self, parent, *args, **kwargs):
         Frame.__init__(self, parent, bg='black')
@@ -262,7 +262,7 @@ class Reddit(Frame):
             print "Error: %s. Cannot get reddit feed." % d
 
         self.after(500, self.get_reddit)
-
+'''
 class FullscreenWindow:
 
     def __init__(self):
@@ -284,10 +284,11 @@ class FullscreenWindow:
         # news
         self.news = News(self.bottomFrame)
         self.news.pack(side=LEFT, anchor=S, padx=100, pady=60)
-        # calender - removing for now
+        # reddit - removing for now
+        '''
         self.reddit = Reddit(self.bottomFrame)
         self.reddit.pack(side = RIGHT, anchor=S, padx=100, pady=60)
-
+        '''
     def toggle_fullscreen(self, event=None):
         self.state = not self.state  # Just toggling the boolean
         self.tk.attributes("-fullscreen", self.state)
