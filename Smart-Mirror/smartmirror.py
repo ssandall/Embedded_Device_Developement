@@ -166,7 +166,7 @@ class News(Frame):
             traceback.print_exc()
             print "Error: %s. Cannot get news." % e
 
-        self.after(600000, self.get_headlines)
+        self.after(6000, self.get_headlines)
 class NewsHeadline(Frame):
     def __init__(self, parent, event_name=""):
         Frame.__init__(self, parent, bg='black')
