@@ -150,11 +150,10 @@ class News(Frame):
 
     def get_headlines(self):
         try:
-            # remove all children
             for widget in self.headlinesContainer.winfo_children():
                 widget.destroy()
             if news_country_code == None:
-                headlines_url = "https://news.google.com/news?ned=us&output=rss"
+                headlines_url = "https://news.google.com/news?ned=au&output=rss"
             else:
                 headlines_url = "https://news.google.com/news?ned=%s&output=rss" % news_country_code
 
