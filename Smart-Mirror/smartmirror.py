@@ -52,7 +52,7 @@ class Clock(Frame):
 
     def tick(self):
         with setlocale(ui_locale):
-            if time_format == 24:
+            if time_format == 12:
                 time2 = time.strftime('%I:%M %p') #hour in 12h format
             else:
                 time2 = time.strftime('%H:%M') #hour in 24h format
