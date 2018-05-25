@@ -5,23 +5,8 @@ reddit = praw.Reddit(client_id='44Ludf0cmZiLTg',
          user_agent='redditapi', username='Web_Hoon')
 
 subreddit = reddit.subreddit('python')
-hot_python1 = subreddit.hot(limit=3)
-hot_python2 = subreddit.hot(limit=4)
-hot_python3 = subreddit.hot(limit=5)
-hot_python4 = subreddit.hot(limit=6)
+top_subreddit = subreddit.top()
+for submission in subreddit.top(limit=5):
+    variable = (submission.title)
 
-for submission in hot_python1:
-    if not submission.stickied:
-        postval1 = "%s" % (submission.title)
-
-for submission in hot_python2:
-    if not submission.stickied:
-        postval2 = "%s" % (submission.title)
-
-for submission in hot_python3:
-    if not submission.stickied:
-        postval3 = "%s" % (submission.title)
-
-for submission in hot_python4:
-    if not submission.stickied:
-        postval4 = "%s" % (submission.title)
+print(variable)

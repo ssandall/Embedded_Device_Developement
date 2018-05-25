@@ -141,7 +141,7 @@ class News(Frame):
     def __init__(self, parent, *args, **kwargs):
         Frame.__init__(self, parent, *args, **kwargs)
         self.config(bg='black')
-        self.title = 'News' 
+        self.title = 'News'
         self.newsLbl = Label(self, text=self.title, font=('Helvetica', medium_text_size), fg="white", bg="black")
         self.newsLbl.pack(side=TOP, anchor=W)
         self.headlinesContainer = Frame(self, bg="black")
@@ -185,7 +185,7 @@ class NewsHeadline(Frame):
         self.eventNameLbl = Label(self, text=self.eventName, font=('Helvetica', small_text_size), fg="white", bg="black")
         self.eventNameLbl.pack(side=LEFT, anchor=N)
 
-class Calendar(Frame):
+class Reddit(Frame):
     def __init__(self, parent, *args, **kwargs):
         Frame.__init__(self, parent, bg='black')
         self.post1 = ''
@@ -219,6 +219,7 @@ class Calendar(Frame):
                      user_agent='redditapi', username='Web_Hoon')
 
             subreddit = reddit.subreddit('python')
+            top_subreddit = subreddit.top(5)
             hot_python1 = subreddit.hot(limit=3)
             hot_python2 = subreddit.hot(limit=4)
             hot_python3 = subreddit.hot(limit=5)
@@ -284,8 +285,8 @@ class FullscreenWindow:
         self.news = News(self.bottomFrame)
         self.news.pack(side=LEFT, anchor=S, padx=100, pady=60)
         # calender - removing for now
-        self.calender = Calendar(self.bottomFrame)
-        self.calender.pack(side = RIGHT, anchor=S, padx=100, pady=60)
+        self.reddit = Reddit(self.bottomFrame)
+        self.reddit.pack(side = RIGHT, anchor=S, padx=100, pady=60)
 
     def toggle_fullscreen(self, event=None):
         self.state = not self.state  # Just toggling the boolean
