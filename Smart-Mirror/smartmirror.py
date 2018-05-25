@@ -23,7 +23,7 @@ CHANNEL_ID = 502804
 xlarge_text_size = 48
 large_text_size = 28
 medium_text_size = 18
-small_text_size = 8
+small_text_size = 12
 
 @contextmanager
 def setlocale(name):
