@@ -23,7 +23,7 @@ def ledToggle():
     if red.is.lit:
         red.off()
         redButton["text"] = "Turn LED on"
-    else
+    else:
         red.on()
         redButton["text"] = "Turn LED off"
 
