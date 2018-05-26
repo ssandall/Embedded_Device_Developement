@@ -7,7 +7,7 @@ RPi.GPIO.setmode(RPi.GPIO.BCM)
 
 ### HARDWARE ###
 
-red = LED(20)
+led = LED(20)
 green = LED(16)
 blue = LED(21)
 
@@ -20,7 +20,7 @@ myFont = tkinter.font.Font(family = 'Helvetica', size = 12, weight = "bold")
 ### EVENT FUNCTIONS ###
 
 def ledToggle():
-    if red.is.lit:
+    if led.is.lit:
         red.off()
         redButton["text"] = "Turn LED on"
     else:
