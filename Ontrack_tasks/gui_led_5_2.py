@@ -1,4 +1,4 @@
-from tkinter import*
+from Tkinter import *
 import tkinter.font
 from gpiozero import LED
 import RPi.GPIO
