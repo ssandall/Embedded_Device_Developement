@@ -3,7 +3,7 @@ from gpiozero import LED
 import RPi.GPIO
 RPi.GPIO.setmode(RPi.GPIO.BCM)
 
-class ExampleView(Frame):
+class RGBLed(Frame):
     def __init__(self, root):
         red = LED(20)
         green = LED(16)
@@ -40,6 +40,6 @@ class ExampleView(Frame):
 
 if __name__=='__main__':
     win = Tk()
-    view = ExampleView(win)
+    view = RGBLed(win)
     view.pack(side="top", fill="both", expand=True)
     win.mainloop()
