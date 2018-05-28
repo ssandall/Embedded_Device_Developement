@@ -3,7 +3,7 @@ from gpiozero import LED
 import RPi.GPIO
 RPi.GPIO.setmode(RPi.GPIO.BCM)
 
-class ExampleView(tk.Frame):
+class ExampleView(Frame):
     red = LED(20)
     def __init__(self, root):
         tk.Frame.__init__(self, root)
