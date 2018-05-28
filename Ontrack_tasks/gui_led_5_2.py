@@ -1,5 +1,5 @@
-from tkinter import *
-import tkinter.font
+from Tkinter import *
+import Tkinter.font
 from gpiozero import LED
 import RPi.GPIO
 
