@@ -11,24 +11,24 @@ class ExampleView(Frame):
         def redToggle():
             if red.is_lit:
                 red.off()
-                redButton["text"] = "Turn LED on"
+                redButton["text"] = "Turn RED on"
             else:
                 red.on()
-                redButton["text"] = "Turn LED off"
+                redButton["text"] = "Turn RED off"
         def greenToggle():
             if green.is_lit:
                 green.off()
-                greenButton["text"] = "Turn LED on"
+                greenButton["text"] = "Turn GREEN on"
             else:
                 green.on()
-                greenButton["text"] = "Turn LED off"
+                greenButton["text"] = "Turn GREEN off"
         def blueToggle():
             if blue.is_lit:
                 blue.off()
-                blueButton["text"] = "Turn LED on"
+                blueButton["text"] = "Turn BLUE on"
             else:
                 blue.on()
-                blueButton["text"] = "Turn LED off"
+                blueButton["text"] = "Turn BLUE off"
 
         Frame.__init__(self, root)
         redButton = Button(win, text="Turn LED On", command= redToggle)
