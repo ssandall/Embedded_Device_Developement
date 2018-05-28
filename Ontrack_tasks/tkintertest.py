@@ -15,14 +15,14 @@ class ExampleView(Frame):
             else:
                 red.on()
                 redButton["text"] = "Turn LED off"
-        def blueToggle():
+        def greenToggle():
             if green.is_lit:
                 green.off()
                 greenButton["text"] = "Turn LED on"
             else:
                 green.on()
                 greenButton["text"] = "Turn LED off"
-        def greenToggle():
+        def blueToggle():
             if blue.is_lit:
                 blue.off()
                 blueButton["text"] = "Turn LED on"
@@ -37,7 +37,7 @@ class ExampleView(Frame):
         blueButton.pack()
         greenButton = Button(win, text="Turn LED On", command= greenToggle)
         greenButton.pack()
-        
+
 if __name__=='__main__':
     win = Tk()
     view = ExampleView(win)
