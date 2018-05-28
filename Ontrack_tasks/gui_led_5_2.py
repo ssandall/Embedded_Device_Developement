@@ -13,7 +13,7 @@ blue = LED(21)
 
 ### GUI DEFINITIONS ##
 
-win = tk()
+win = Tk()
 win.title("LED Toggler")
 myFont = tkinter.font.Font(family = 'Helvetica', size = 12, weight = "bold")
 
