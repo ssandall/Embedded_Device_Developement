@@ -1,4 +1,4 @@
-import tkinter as tk
+import tkinter *
 from gpiozero import LED
 import RPi.GPIO
 RPi.GPIO.setmode(RPi.GPIO.BCM)
