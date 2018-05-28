@@ -1,4 +1,4 @@
-import tkinter *
+import tkinter import *
 from gpiozero import LED
 import RPi.GPIO
 RPi.GPIO.setmode(RPi.GPIO.BCM)
@@ -23,7 +23,7 @@ class ExampleView(tk.Frame):
             redButton["text"] = "Turn LED off"
 
 if __name__=='__main__':
-    root = tk.Tk()
+    root = Tk()
     view = ExampleView(root)
     view.pack(side="top", fill="both", expand=True)
     root.mainloop()
