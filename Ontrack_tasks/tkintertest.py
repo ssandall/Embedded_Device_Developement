@@ -1,5 +1,5 @@
 import Tkinter as tk
-import tk.font
+import tkinter.font
 from gpiozero import LED
 import RPi.GPIO
 RPi.GPIO.setmode(RPi.GPIO.BCM)
