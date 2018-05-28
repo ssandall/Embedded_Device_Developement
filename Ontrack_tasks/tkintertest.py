@@ -23,7 +23,7 @@ class ExampleView(Frame):
             redButton["text"] = "Turn LED off"
 
 if __name__=='__main__':
-    root = Tk()
-    view = ExampleView(root)
+    win = Tk()
+    view = ExampleView(win)
     view.pack(side="top", fill="both", expand=True)
-    root.mainloop()
+    win.mainloop()
