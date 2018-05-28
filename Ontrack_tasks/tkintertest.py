@@ -6,7 +6,7 @@ RPi.GPIO.setmode(RPi.GPIO.BCM)
 class ExampleView(Frame):
     red = LED(20)
     def __init__(self, root):
-        tk.Frame.__init__(self, root)
+        Frame.__init__(self, root)
         '''
         l = tk.Label(self, text="your widgets go here...", anchor="c")
         l.pack(side="top", fill="both", expand=True)
