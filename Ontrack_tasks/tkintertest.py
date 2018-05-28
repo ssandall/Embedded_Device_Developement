@@ -11,7 +11,7 @@ class ExampleView(Frame):
         l = tk.Label(self, text="your widgets go here...", anchor="c")
         l.pack(side="top", fill="both", expand=True)
         '''
-        redButton = Button(master, text="Turn LED On", command=redToggle)
+        redButton = Button(win, text="Turn LED On", command=redToggle)
         redButton.pack()
 
     def redToggle():
