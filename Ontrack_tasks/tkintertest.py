@@ -31,11 +31,11 @@ class ExampleView(Frame):
                 blueButton["text"] = "Turn BLUE off"
 
         Frame.__init__(self, root)
-        redButton = Button(win, text="Turn LED On", command= redToggle)
+        redButton = Button(win, text="Turn RED On", command= redToggle)
         redButton.pack()
-        blueButton = Button(win, text="Turn LED On", command= blueToggle)
+        blueButton = Button(win, text="Turn BLUE On", command= blueToggle)
         blueButton.pack()
-        greenButton = Button(win, text="Turn LED On", command= greenToggle)
+        greenButton = Button(win, text="Turn GREEN On", command= greenToggle)
         greenButton.pack()
 
 if __name__=='__main__':
