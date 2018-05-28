@@ -4,10 +4,8 @@ import RPi.GPIO
 RPi.GPIO.setmode(RPi.GPIO.BCM)
 
 class ExampleView(Frame):
-    red = LED(20)
-
     def __init__(self, root):
-
+        red = LED(20)
         def redToggle():
             if red.is_lit:
                 red.off()
