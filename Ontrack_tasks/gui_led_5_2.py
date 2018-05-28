@@ -1,5 +1,5 @@
-from Tkinter import *
-import tkFont
+from tkinter import *
+import tkinter.font
 from gpiozero import LED
 import RPi.GPIO
 
@@ -15,7 +15,7 @@ blue = LED(21)
 
 win = Tk()
 win.title("LED Toggler")
-myFont = tkFont.Font(family = 'Helvetica', size = 12, weight = "bold")
+myFont = tkinter.font.Font(family = 'Helvetica', size = 12, weight = "bold")
 
 ### EVENT FUNCTIONS ###
 
@@ -52,3 +52,5 @@ redButton.grid(row=0, column = 2)
 
 blueButton = Button(win, text = "Turn LED on", font = myFont, command = blueToggle, bg = 'red', height = 1, width = 24)
 redButton.grid(row=0, column = 3)
+
+win.mainloop
