@@ -5,6 +5,15 @@ RPi.GPIO.setmode(RPi.GPIO.BCM)
 
 class ExampleView(Frame):
     red = LED(20)
+
+    def redToggle():
+        if red.is_lit:
+            red.off()
+            redButton["text"] = "Turn LED on"
+        else:
+            red.on()
+            redButton["text"] = "Turn LED off"
+            
     def __init__(self, root):
         Frame.__init__(self, root)
         '''
@@ -13,14 +22,6 @@ class ExampleView(Frame):
         '''
         redButton = Button(win, text="Turn LED On", command= redToggle)
         redButton.pack()
-
-        def redToggle():
-            if red.is_lit:
-                red.off()
-                redButton["text"] = "Turn LED on"
-            else:
-                red.on()
-                redButton["text"] = "Turn LED off"
 
 if __name__=='__main__':
     win = Tk()
