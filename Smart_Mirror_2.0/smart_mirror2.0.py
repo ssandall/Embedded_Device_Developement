@@ -3,18 +3,20 @@ import time
 
 #Font Variables
 font_type = 'Helvetica'
+font_colour = "White"
 xlarge_text_size = 48
 large_text_size = 30
 medium_text_size = 20
 small_text_size = 12
 xsmall_text_size =8
 
+
 class Clock(Frame):
     def __init__(self, parent, *args, **kwargs):
         Frame.__init__(self, parent, bg='black')
         #Time Label
         self.time1 = ''
-        self.timeLbl = Label(self, font=(font_type, xlarge_text_size), fg="white", bg="black")
+        self.timeLbl = Label(self, font=(font_type, xlarge_text_size), fg=font_colour, bg="black")
         self.timeLbl.pack(side=TOP, anchor=E)
         #Day Of the Week label
         self.weekday1 = ''
