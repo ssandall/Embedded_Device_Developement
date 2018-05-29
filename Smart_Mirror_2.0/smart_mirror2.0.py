@@ -33,7 +33,7 @@ class Clock(Frame):
         # Set Day of the Week
         weekday2 = time.strftime('%A')
         if weekday2 != self.weekday1
-            self.weekday1 = weekday2
+            weekday1 = weekday2
             self.weekdayLbl.config(text=weekday2)
 
 class FullscreenWindow:
