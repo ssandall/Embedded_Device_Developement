@@ -12,18 +12,29 @@ xsmall_text_size =8
 class Clock(Frame):
     def __init__(self, parent, *args, **kwargs):
         Frame.__init__(self, parent, bg='black')
-        #time label
+        #Time Label
         self.time1 = ''
         self.timeLbl = Label(self, font=(font_type, xlarge_text_size), fg="white", bg="black")
         self.timeLbl.pack(side=TOP, anchor=E)
+        #Day Of the Week label
+        self.weekday1 = ''
+        self.weekdayLbl = Label(self, font=(font_type,medium_text_size), fg="White", bg="Black")
+        self.weekdayLbl.pack(side=TOP,anchor=E)
+        #Date Label
         self.tick()
 
     def tick(self):
+        #Set Clock
         time2 = time.strftime('%H:%M:%S')
         if time2 != self.time1:
             time1 = time2
             self.timeLbl.config(text=time2)
             self.timeLbl.after(200, self.tick)
+        # Set Day of the Week
+        weekday2 = time.strftime('%A')
+        if weekday2 != self.weekday1
+            self.weekday1 = weekday2
+            self.weekdayLbl.config(text=weekday2)
 
 class FullscreenWindow:
 
