@@ -20,9 +20,12 @@ class Clock(Frame):
         self.timeLbl.pack(side=TOP, anchor=E)
         #Day Of the Week label
         self.weekday1 = ''
-        self.weekdayLbl = Label(self, font=(font_type,medium_text_size), fg="White", bg="Black")
+        self.weekdayLbl = Label(self, font=(font_type,medium_text_size), fg=font_colour, bg="black")
         self.weekdayLbl.pack(side=TOP,anchor=E)
         #Date Label
+        self.date1 = ''
+        self.dateLbl = Label(self,font=(font_type,medium_text_size), fg=font_colour, bg="black")
+        self.dateLbl.pack(side=TOP,anchor=E)
         self.tick()
 
     def tick(self):
@@ -37,6 +40,12 @@ class Clock(Frame):
         if weekday2 != self.weekday1:
             self.weekday1 = weekday2
             self.weekdayLbl.config(text=weekday2)
+        # Set date
+        date2 = time.strftime("%b %d, %Y")
+        if date2 != self.date1:
+            self.date1 = date2
+            self.dateLbl.config(text=date2)
+
 
 class FullscreenWindow:
 
