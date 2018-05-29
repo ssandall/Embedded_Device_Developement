@@ -8,6 +8,7 @@ class Clock(Frame):
         self.tick()
 
     def tick(self):
+        time1 = ''
         time2 = time.strftime('%H:%M:%S')
         if time2 != time1:
             time1 = time2
