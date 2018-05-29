@@ -3,13 +3,12 @@ import time
 
 class Clock(Frame):
     def __init__(self, root):
-        time1 = ''
+        global time1 = ''
         clock = Label(root, font=('times', 20, 'bold'), bg='green')
         clock.pack(fill="both", expand=True)
         self.tick()
 
     def tick(self):
-        global time1
         time2 = time.strftime('%H:%M:%S')
         if time2 != time1:
             time1 = time2
