@@ -36,7 +36,5 @@ class FullscreenWindow:
         self.clock.pack(side=RIGHT, anchor=N, padx=100, pady=60)
 
 if __name__=='__main__':
-    win = Tk()
-    view = Clock(win)
-    view.pack(side="top", fill="both", expand=True)
+    win = FullscreenWindow()
     win.mainloop()
