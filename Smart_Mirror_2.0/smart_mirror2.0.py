@@ -105,7 +105,7 @@ class Weather(Frame):
 
         except Exception as e:
             traceback.print_exc()
-            print "Error: %s. Cannot get weather." % e
+            print ("Error: %s. Cannot get weather.") % e
 
         self.after(500, self.get_local_weather)
 class FullscreenWindow:
