@@ -1,5 +1,6 @@
 from tkinter import *
 import time
+import urllib2
 
 #Font Variables
 font_type = 'Helvetica'
@@ -9,6 +10,9 @@ large_text_size = 30
 medium_text_size = 20
 small_text_size = 12
 xsmall_text_size =8
+#Local Weather Variables
+READ_API_KEY = 'D71A7607GOWJSZ6D'
+CHANNEL_ID = 502804
 
 
 class Clock(Frame):
