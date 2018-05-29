@@ -1,9 +1,12 @@
 from tkinter import *
 import time
 
+xlarge_text_size = 12
+
 class Clock(Frame):
     def __init__(self, root):
-        clock = Label(root, font=('times', 20, 'bold'), bg='green')
+        #clock = Label(root, font=('times', 20, 'bold'), bg='green')
+        clock= Label(self, font=('Helvetica', xlarge_text_size), fg="white", bg="black")
         clock.pack(fill="both", expand=True)
         self.tick()
 
