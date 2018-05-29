@@ -45,8 +45,69 @@ class Clock(Frame):
         if date2 != self.date1:
             self.date1 = date2
             self.dateLbl.config(text=date2)
+class Weather(Frame):
+    def __init__(self, parent, *args, **kwargs):
+        Frame.__init__(self, parent, bg='black')
+        #Temperature Label
+        self.temperature = ''
+        self.temperatureLbl = Label(self, font=(font_type, xlarge_text_size), fg=font_colour, bg="black")
+        self.temperatureLbl.pack(side=LEFT, anchor=N)
+        #UV Level Label
+        self.uv = ''
+        self.uvLbl = Label(self, font=(font_type, large_text_size), fg=font_colour, bg="black")
+        self.uvLbl.pack(side=TOP, anchor=W)
+        #Humidity Label
+        self.humidity = ''
+        self.humidityLbl = Label(self, font=(font_type, medium_text_size),fg=font_colour,bg="black")
+        self.humidityLbl.pack(side=TOP, anchor=W)
+        #Apparent Temperature Label
+        self.apparenttemp = ''
+        self.apparenttempLbl = Label(self, font=(font_type, medium_text_size), fg=font_colour, bg="black")
+        self.apparenttempLbl.pack(side=TOP, anchor=W)
 
+        self.get_local_weather()
 
+    def get_local_weather(self):
+        try:
+            degree_sign = u'\N{DEGREE SIGN}'
+            tempval = ''
+            humidval = ''
+            uvval = ''
+            apptempval = ''
+
+            conn = urllib2.urlopen("http://api.thingspeak.com/channels/%s/feeds/last.json?api_key=%s" \
+                           % (CHANNEL_ID, READ_API_KEY))
+
+            response = conn.read()
+            data = json.loads(response)
+            conn.close()
+
+            tempval = "%.2f%s" % (float(str(data['field1'])), degree_sign)
+            humidval = "%s%.2f%s" % ("Humidity ", float(str(data['field2'])), "%")
+            uvval = "%s%s" % ("UV Level ", int(data['field3']))
+            apptempval = "%s%.2f%s" % ("Feel's like ", float(str(data['field4'])), degree_sign)
+
+            if self.temperature != None:
+                self.temperature = tempval
+                self.temperatureLbl.config(text=tempval)
+
+            if self.humidity != None:
+                self.humidity = humidval
+                self.humidityLbl.config(text=humidval)
+
+            if self.uv != None:
+                self.uv = uvval
+                self.uvLbl.config(text=uvval)
+
+            if self.apparenttemp != None:
+                self.apparenttemp = apptempval
+                self.apparenttempLbl.config(text=apptempval)
+
+        except Exception as e:
+            traceback.print_exc()
+            print "Error: %s. Cannot get weather." % e
+
+        self.after(500, self.get_local_weather)
 class FullscreenWindow:
 
     def __init__(self):
