@@ -1,6 +1,6 @@
 from tkinter import *
 import time
-import urllib2
+from urllib.request import urlopen
 
 #Font Variables
 font_type = 'Helvetica'
@@ -79,7 +79,7 @@ class Weather(Frame):
             uvval = ''
             apptempval = ''
 
-            conn = urllib2.urlopen("http://api.thingspeak.com/channels/%s/feeds/last.json?api_key=%s" \
+            conn = urllib.request.urlopen("http://api.thingspeak.com/channels/%s/feeds/last.json?api_key=%s" \
                            % (CHANNEL_ID, READ_API_KEY))
 
             response = conn.read()
