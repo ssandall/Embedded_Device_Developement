@@ -41,7 +41,7 @@ class Clock(Frame):
             self.weekday1 = weekday2
             self.weekdayLbl.config(text=weekday2)
         # Set date
-        date2 = time.strftime("%b %d, %Y")
+        date2 = time.strftime("%d %b, %Y")
         if date2 != self.date1:
             self.date1 = date2
             self.dateLbl.config(text=date2)
