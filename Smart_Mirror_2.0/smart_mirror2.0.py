@@ -3,7 +3,6 @@ import time
 
 class Clock(Frame):
     def __init__(self, root):
-        global time1 = ''
         clock = Label(root, font=('times', 20, 'bold'), bg='green')
         clock.pack(fill="both", expand=True)
         self.tick()
