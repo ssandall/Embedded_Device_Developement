@@ -12,7 +12,7 @@ class Clock(Frame):
         time2 = time.strftime('%H:%M:%S')
         if time2 != time1:
             time1 = time2
-        clock.config(text=time2)
+        self.clock.config(text=time2)
         clock.after(200, tick)
 
 if __name__=='__main__':
