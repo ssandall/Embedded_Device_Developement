@@ -47,4 +47,4 @@ class FullscreenWindow:
 
 if __name__=='__main__':
     win = FullscreenWindow()
-    win.mainloop()
+    win.tk.mainloop()
