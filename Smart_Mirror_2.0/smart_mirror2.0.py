@@ -19,6 +19,22 @@ class Clock(Frame):
             self.timeLbl.config(text=time2)
             self.timeLbl.after(200, self.tick)
 
+class FullscreenWindow:
+
+    def __init__(self):
+        self.tk = Tk()
+        self.tk.configure(background='black')
+        self.topFrame = Frame(self.tk, background = 'black')
+        self.bottomFrame = Frame(self.tk, background = 'black')
+        self.topFrame.pack(side = TOP, fill=BOTH, expand = YES)
+        self.bottomFrame.pack(side = BOTTOM, fill=BOTH, expand = YES)
+        self.state = False
+        self.tk.bind("<Return>", self.toggle_fullscreen)
+        self.tk.bind("<Escape>", self.end_fullscreen)
+        # clock
+        self.clock = Clock(self.topFrame)
+        self.clock.pack(side=RIGHT, anchor=N, padx=100, pady=60)
+
 if __name__=='__main__':
     win = Tk()
     view = Clock(win)
