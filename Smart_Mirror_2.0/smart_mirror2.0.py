@@ -79,7 +79,7 @@ class Weather(Frame):
             uvval = ''
             apptempval = ''
 
-            conn = urllib.request.urlopen("http://api.thingspeak.com/channels/%s/feeds/last.json?api_key=%s" \
+            conn = urlopen("http://api.thingspeak.com/channels/%s/feeds/last.json?api_key=%s" \
                            % (CHANNEL_ID, READ_API_KEY))
 
             response = conn.read()
