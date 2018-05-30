@@ -195,7 +195,7 @@ class Reddit(Frame):
                      user_agent='redditapi', username='Web_Hoon')
 
             subreddit = reddit.subreddit(SUBREDDIT_SELECTION)
-            top_subreddit = subreddit.hot(limit=1)
+            top_subreddit = subreddit.hot(limit=3)
 
             for submission in top_subreddit:
                 if not submission.stickied:
@@ -228,7 +228,7 @@ class FullscreenWindow:
         self.news.pack(side=LEFT, anchor=S, padx=100, pady=60)
         # reddit
         self.reddit = Reddit(self.bottomFrame)
-        self.reddit.pack(side = LEFT, anchor=N, padx=100, pady=60)
+        self.reddit.pack(side = RIGHT, anchor=S, padx=100, pady=60)
 
     def toggle_fullscreen(self, event=None):
         self.state = not self.state  # Just toggling the boolean
