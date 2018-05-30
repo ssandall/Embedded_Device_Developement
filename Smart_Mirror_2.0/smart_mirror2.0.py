@@ -177,10 +177,11 @@ class News(Frame):
             for post in feed.entries[0:5]:
                 headline = NewsHeadline(self.headlinesContainer, post.title)
                 headline.pack(side=TOP, anchor=W)
+        '''        
         except Exception as e:
             traceback.print_exc()
             print "Error: %s. Cannot get news." % e
-
+        '''
         self.after(600000, self.get_headlines)
 class NewsHeadline(Frame):
     def __init__(self, parent, event_name=""):
