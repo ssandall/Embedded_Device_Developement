@@ -204,6 +204,7 @@ class FullscreenWindow:
         self.bottomFrame = Frame(self.tk, background = 'black')
         self.topFrame.pack(side = TOP, fill=BOTH, expand = YES)
         self.bottomFrame.pack(side = BOTTOM, fill=BOTH, expand = YES)
+        #Fullscreen Keybinds/Initialisation
         self.state = False
         self.tk.bind("<Return>", self.toggle_fullscreen)
         self.tk.bind("<Escape>", self.end_fullscreen)
@@ -213,9 +214,12 @@ class FullscreenWindow:
         #Weather Location
         self.weather = Weather(self.topFrame)
         self.weather.pack(side=LEFT,anchor=N, padx=100, pady=60)
+        #News Location
+        self.news = News(self.bottomFrame)
+        self.news.pack(side=LEFT, anchor=S, padx=100, pady=60)
 
     def toggle_fullscreen(self, event=None):
-        self.state = not self.state  # Just toggling the boolean
+        self.state = not self.state
         self.tk.attributes("-fullscreen", self.state)
         return "break"
 
