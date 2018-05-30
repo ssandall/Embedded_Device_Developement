@@ -118,6 +118,7 @@ class Weather(Frame):
             print ("Error: %s. Cannot get weather.") % e
 
         self.after(500, self.get_local_weather)
+'''
 class Reddit(Frame):
     def __init__(self, parent, *args, **kwargs):
         Frame.__init__(self, parent, *args, **kwargs)
@@ -147,8 +148,7 @@ class Reddit(Frame):
         except Exception as f:
             traceback.print_exc()
             print ("Error: %s. This is a BIG REDDIT ERROR.") % f
-
-
+'''
 class FullscreenWindow:
 
     def __init__(self):
