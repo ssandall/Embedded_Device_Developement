@@ -1,6 +1,7 @@
 from tkinter import *
 import time
 import json
+import requests
 from urllib.request import urlopen
 
 #Font Variables
