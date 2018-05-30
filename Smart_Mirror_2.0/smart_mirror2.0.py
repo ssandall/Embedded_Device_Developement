@@ -118,7 +118,7 @@ class Weather(Frame):
             print ("Error: %s. Cannot get weather.") % e
 
         self.after(500, self.get_local_weather)
-class Reddit(Frame)
+class Reddit(Frame):
     def __init__(self, parent, *args, **kwargs):
         Frame.__init__(self, parent, *args, **kwargs)
         # Reddit Title Label
