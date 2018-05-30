@@ -35,7 +35,7 @@ class Clock(Frame):
 
     def tick(self):
         #Set Clock
-        time2 = time.strftime('%H:%M:%S')
+        time2 = time.strftime('%H:%M')
         if time2 != self.time1:
             time1 = time2
             self.timeLbl.config(text=time2)
