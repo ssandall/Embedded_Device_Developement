@@ -146,7 +146,7 @@ class Reddit(Frame):
 
         except Exception as f:
             traceback.print_exc()
-            print "Error: %s. This is a BIG REDDIT ERROR." % f
+            print ("Error: %s. This is a BIG REDDIT ERROR.") % f
 
 
 class FullscreenWindow:
