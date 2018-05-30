@@ -2,6 +2,7 @@ from tkinter import *
 import time
 import json
 import requests
+import praw
 
 #Font Variables
 font_type = 'Helvetica'
@@ -14,6 +15,8 @@ xsmall_text_size =8
 #Local Weather Variables
 READ_API_KEY = 'D71A7607GOWJSZ6D'
 CHANNEL_ID = 502804
+#Reddit Variables
+SUBREDDIT_SELECTION = 'technology'
 
 
 class Clock(Frame):
@@ -115,6 +118,37 @@ class Weather(Frame):
             print ("Error: %s. Cannot get weather.") % e
 
         self.after(500, self.get_local_weather)
+class Reddit(Frame)
+    def __init__(self, parent, *args, **kwargs):
+        Frame.__init__(self, parent, *args, **kwargs)
+        # Reddit Title Label
+        self.title = 'Reddit Top 1:'
+        self.redditLbl = Label(self, text=self.title, font=(font_type, medium_text_size), fg=font_colour, bg="black")
+        self.redditLbl.pack(side=TOP, anchor=W)
+        # Reddit article label
+        self.postContainer= Frame(self, bg="black")
+        self.postContainer.pack(side=TOP)
+        self.get_reddit_post()
+
+    def get_reddit_post(self):
+        try:
+            reddit = praw.Reddit(client_id='44Ludf0cmZiLTg',
+                     client_secret='NxpTIa74hi4udO6Mi3mSaJuNjRU', password='Sasha18898',
+                     user_agent='redditapi', username='Web_Hoon')
+
+            subreddit = reddit.subreddit(SUBREDDIT_SELECTION)
+            top_subreddit = subreddit.top(1)
+
+            for submission in top_subreddit:
+                if not submission.stickied:
+                    top_post = Reddit(self.postContainer,"%s" % (submission.title))
+                    top_post.pack(side=TOP, anchor =W)
+
+        except Exception as f:
+            traceback.print_exc()
+            print "Error: %s. This is a BIG REDDIT ERROR." % f
+
+
 class FullscreenWindow:
 
     def __init__(self):
