@@ -166,7 +166,7 @@ class NewsHeadline(Frame):
 
         image = Image.open("assets/Newspaper.png")
         image = image.resize((25, 25), Image.ANTIALIAS)
-        image = image.convert('RGB')
+        image = image.convert('Blue')
         photo = ImageTk.PhotoImage(image)
 
         self.iconLbl = Label(self, bg='black', image=photo)
