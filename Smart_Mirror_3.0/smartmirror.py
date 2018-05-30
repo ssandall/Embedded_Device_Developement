@@ -75,16 +75,16 @@ class Weather(Frame):
         self.degreeFrm = Frame(self, bg="black")
         self.degreeFrm.pack(side=TOP, anchor=W)
 
-        self.temperatureLbl = Label(self.degreeFrm, font=('Helvetica', xlarge_text_size), fg="white", bg="black")
+        self.temperatureLbl = Label(self.degreeFrm, font=(font_type, xlarge_text_size), fg=font_colour, bg="black")
         self.temperatureLbl.pack(side=LEFT, anchor=N)
 
-        self.uvLbl = Label(self, font=('Helvetica', large_text_size), fg="white", bg="black")
+        self.uvLbl = Label(self, font=(font_type, large_text_size), fg=font_colour, bg="black")
         self.uvLbl.pack(side=TOP, anchor=W)
 
-        self.humidityLbl = Label(self, font=('Helvetica', medium_text_size),fg="white",bg="black")
+        self.humidityLbl = Label(self, font=(font_type, medium_text_size),fg=font_colour,bg="black")
         self.humidityLbl.pack(side=TOP, anchor=W)
 
-        self.apparenttempLbl = Label(self, font=('Helvetica', medium_text_size), fg="white", bg="black")
+        self.apparenttempLbl = Label(self, font=(font_type, medium_text_size), fg=font_colour, bg="black")
         self.apparenttempLbl.pack(side=TOP, anchor=W)
 
         self.get_local_weather()
@@ -135,7 +135,7 @@ class News(Frame):
         Frame.__init__(self, parent, *args, **kwargs)
         self.config(bg='black')
         self.title = 'News'
-        self.newsLbl = Label(self, text=self.title, font=('Helvetica', medium_text_size), fg="white", bg="black")
+        self.newsLbl = Label(self, text=self.title, font=(font_type, medium_text_size), fg=font_colour, bg="black")
         self.newsLbl.pack(side=TOP, anchor=W)
         self.headlinesContainer = Frame(self, bg="black")
         self.headlinesContainer.pack(side=TOP)
@@ -174,7 +174,7 @@ class NewsHeadline(Frame):
         self.iconLbl.pack(side=LEFT, anchor=N)
 
         self.eventName = event_name
-        self.eventNameLbl = Label(self, text=self.eventName, font=('Helvetica', small_text_size), fg="white", bg="black")
+        self.eventNameLbl = Label(self, text=self.eventName, font=(font_type, small_text_size), fg=font_colour, bg="black")
         self.eventNameLbl.pack(side=LEFT, anchor=N)
 '''
 class Reddit(Frame):
