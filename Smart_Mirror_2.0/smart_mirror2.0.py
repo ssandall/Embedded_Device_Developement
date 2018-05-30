@@ -2,7 +2,7 @@ from tkinter import *
 import time
 import json
 import requests
-import praw
+#import praw
 
 #Font Variables
 font_type = 'Helvetica'
