@@ -61,15 +61,15 @@ class Weather(Frame):
         #UV Level Label
         self.uv = ''
         self.uvLbl = Label(self, font=(font_type, large_text_size), fg=font_colour, bg="black")
-        self.uvLbl.pack(side=TOP, anchor=W)
+        self.uvLbl.pack(side=LEFT, anchor=N)
         #Humidity Label
         self.humidity = ''
         self.humidityLbl = Label(self, font=(font_type, medium_text_size),fg=font_colour,bg="black")
-        self.humidityLbl.pack(side=TOP, anchor=W)
+        self.humidityLbl.pack(side=LEFT, anchor=N)
         #Apparent Temperature Label
         self.apparenttemp = ''
         self.apparenttempLbl = Label(self, font=(font_type, medium_text_size), fg=font_colour, bg="black")
-        self.apparenttempLbl.pack(side=TOP, anchor=W)
+        self.apparenttempLbl.pack(side=LEFT, anchor=N)
 
         self.get_local_weather()
 
