@@ -20,13 +20,14 @@ large_text_size = 30
 medium_text_size = 20
 small_text_size = 12
 xsmall_text_size =8
-
-ui_locale = ''
-time_format = 12 # 12 or 24
-date_format = "%b %d, %Y"
-news_country_code = 'au'
+#News Variables
+NEWS_COUNTRY_CODE = 'au'
+#Weather Variables
 READ_API_KEY = 'D71A7607GOWJSZ6D'
 CHANNEL_ID = 502804
+#Reddit Variables
+SUBREDDIT_SELECTION = 'technology'
+
 
 class Clock(Frame):
     def __init__(self, parent, *args, **kwargs):
@@ -144,10 +145,10 @@ class News(Frame):
         try:
             for widget in self.headlinesContainer.winfo_children():
                 widget.destroy()
-            if news_country_code == None:
+            if NEWS_COUNTRY_CODE == None:
                 headlines_url = "https://news.google.com/news?ned=au&output=rss"
             else:
-                headlines_url = "https://news.google.com/news?ned=%s&output=rss" % news_country_code
+                headlines_url = "https://news.google.com/news?ned=%s&output=rss" % NEWS_COUNTRY_CODE
 
             feed = feedparser.parse(headlines_url)
 
@@ -175,85 +176,35 @@ class NewsHeadline(Frame):
         self.eventName = event_name
         self.eventNameLbl = Label(self, text=self.eventName, font=('Helvetica', small_text_size), fg="white", bg="black")
         self.eventNameLbl.pack(side=LEFT, anchor=N)
-'''
 class Reddit(Frame):
     def __init__(self, parent, *args, **kwargs):
-        Frame.__init__(self, parent, bg='black')
-        self.post1 = ''
-        self.post2 = ''
-        self.post3 = ''
-        self.post4 = ''
+        Frame.__init__(self, parent, *args, **kwargs)
+        # Reddit Title Label
+        self.title = 'Reddit Top 1:'
+        self.redditLbl = Label(self, text=self.title, font=(font_type, medium_text_size), fg=font_colour, bg="black")
+        self.redditLbl.pack(side=TOP, anchor=W)
+        # Reddit article label
+        self.postContainer= Frame(self, bg="black")
+        self.postContainer.pack(side=TOP)
+        self.get_reddit_post()
 
-        self.degreeFrm = Frame(self, bg="black")
-        self.degreeFrm.pack(side=BOTTOM, anchor=E)
-
-        self.post1Lbl = Label(self, font=('Helvetica', medium_text_size), fg="white", bg="black")
-        self.post1Lbl.pack(side=RIGHT, anchor=E)
-
-        self.post2Lbl = Label(self, font=('Helvetica', medium_text_size), fg="white", bg="black")
-        self.post2Lbl.pack(side=RIGHT, anchor=E)
-
-        self.post3Lbl = Label(self, font=('Helvetica', medium_text_size), fg="white", bg="black")
-        self.post3Lbl.pack(side=RIGHT, anchor=E)
-
-        self.post4Lbl = Label(self, font=('Helvetica', medium_text_size), fg="white", bg="black")
-        self.post4Lbl.pack(side=RIGHT, anchor=E)
-
-
-        self.get_reddit()
-
-    def get_reddit(self):
+    def get_reddit_post(self):
         try:
-
             reddit = praw.Reddit(client_id='44Ludf0cmZiLTg',
                      client_secret='NxpTIa74hi4udO6Mi3mSaJuNjRU', password='Sasha18898',
                      user_agent='redditapi', username='Web_Hoon')
 
-            subreddit = reddit.subreddit('python')
-            top_subreddit = subreddit.top(5)
-            hot_python1 = subreddit.hot(limit=3)
-            hot_python2 = subreddit.hot(limit=4)
-            hot_python3 = subreddit.hot(limit=5)
-            hot_python4 = subreddit.hot(limit=6)
+            subreddit = reddit.subreddit(SUBREDDIT_SELECTION)
+            top_subreddit = subreddit.top(1)
 
-            for submission in hot_python1:
+            for submission in top_subreddit:
                 if not submission.stickied:
-                    postval1 = "%s" % (submission.title)
+                    top_post = Reddit(self.postContainer,"%s" % (submission.title))
+                    top_post.pack(side=TOP, anchor =W)
 
-            for submission in hot_python2:
-                if not submission.stickied:
-                    postval2 = "%s" % (submission.title)
-
-            for submission in hot_python3:
-                if not submission.stickied:
-                    postval3 = "%s" % (submission.title)
-
-            for submission in hot_python4:
-                if not submission.stickied:
-                    postval4 = "%s" % (submission.title)
-
-            if self.post1 != None:
-                self.post1 = postval1
-                self.post1Lbl.config(text=postval1)
-
-            if self.post2 != None:
-                self.post2 = postval2
-                self.post2Lbl.config(text=postval2)
-
-            if self.post3 != None:
-                self.post3 = postval3
-                self.post3Lbl.config(text=postval3)
-
-            if self.post4 != None:
-                self.post4 = postval4
-                self.post4Lbl.config(text=postval4)
-
-        except Exception as d:
+        except Exception as f:
             traceback.print_exc()
-            print "Error: %s. Cannot get reddit feed." % d
-
-        self.after(500, self.get_reddit)
-'''
+            print "Error: %s. This is a BIG REDDIT ERROR." % f
 class FullscreenWindow:
 
     def __init__(self):
@@ -275,11 +226,10 @@ class FullscreenWindow:
         # news
         self.news = News(self.bottomFrame)
         self.news.pack(side=LEFT, anchor=S, padx=100, pady=60)
-        # reddit - removing for now
-        '''
+        # reddit
         self.reddit = Reddit(self.bottomFrame)
         self.reddit.pack(side = RIGHT, anchor=S, padx=100, pady=60)
-        '''
+
     def toggle_fullscreen(self, event=None):
         self.state = not self.state  # Just toggling the boolean
         self.tk.attributes("-fullscreen", self.state)
