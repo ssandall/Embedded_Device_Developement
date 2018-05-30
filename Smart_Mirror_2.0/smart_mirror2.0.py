@@ -2,6 +2,7 @@ from tkinter import *
 import time
 import json
 import requests
+import feedparser
 #import praw
 
 #Font Variables
