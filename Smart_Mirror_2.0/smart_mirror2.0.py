@@ -81,12 +81,11 @@ class Weather(Frame):
             uvval = ''
             apptempval = ''
 
-            conn = urlopen("http://api.thingspeak.com/channels/%s/feeds/last.json?api_key=%s" \
+            api_information = ("http://api.thingspeak.com/channels/%s/feeds/last.json?api_key=%s" \
                            % (CHANNEL_ID, READ_API_KEY))
 
-            response = conn.read()
+            response = requests.get(api_information)
             data = json.loads(response)
-            conn.close()
 
             tempval = "%.2f%s" % (float(str(data['field1'])), degree_sign)
             humidval = "%s%.2f%s" % ("Humidity ", float(str(data['field2'])), "%")
