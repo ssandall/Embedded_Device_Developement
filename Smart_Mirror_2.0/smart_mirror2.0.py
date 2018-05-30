@@ -17,6 +17,8 @@ READ_API_KEY = 'D71A7607GOWJSZ6D'
 CHANNEL_ID = 502804
 #Reddit Variables
 SUBREDDIT_SELECTION = 'technology'
+#News Variables
+NEWS_COUNTRY_CODE = 'au'
 
 
 class Clock(Frame):
@@ -164,10 +166,10 @@ class News(Frame):
         try:
             for widget in self.headlinesContainer.winfo_children():
                 widget.destroy()
-            if news_country_code == None:
+            if NEWS_COUNTRY_CODE == None:
                 headlines_url = "https://news.google.com/news?ned=au&output=rss"
             else:
-                headlines_url = "https://news.google.com/news?ned=%s&output=rss" % news_country_code
+                headlines_url = "https://news.google.com/news?ned=%s&output=rss" % NEWS_COUNTRY_CODE
 
             feed = feedparser.parse(headlines_url)
 
