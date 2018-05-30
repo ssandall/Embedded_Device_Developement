@@ -2,7 +2,6 @@ from tkinter import *
 import time
 import json
 import requests
-from urllib.request import urlopen
 
 #Font Variables
 font_type = 'Helvetica'
@@ -54,12 +53,12 @@ class Clock(Frame):
 class Weather(Frame):
     def __init__(self, parent, *args, **kwargs):
         Frame.__init__(self, parent, bg='black')
-
-        self.degreeFrm = Frame(self, bg="black")
-        self.degreeFrm.pack(side=TOP, anchor=W)
+        # Frame for Temperature Label
+        self.tempFrm = Frame(self, bg="black")
+        self.tempFrm.pack(side=TOP, anchor=W)
         #Temperature Label
         self.temperature = ''
-        self.temperatureLbl = Label(self.degreeFrm, font=(font_type, xlarge_text_size), fg=font_colour, bg="black")
+        self.temperatureLbl = Label(self.tempFrm, font=(font_type, xlarge_text_size), fg=font_colour, bg="black")
         self.temperatureLbl.pack(side=LEFT, anchor=N)
         #UV Level Label
         self.uv = ''
