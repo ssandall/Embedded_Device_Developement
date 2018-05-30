@@ -176,7 +176,7 @@ class News(Frame):
                 headline.pack(side=TOP, anchor=W)
         except Exception as e:
             traceback.print_exc()
-            print "Error: %s. Cannot get news." % e
+            print ("Error: %s. Cannot get news.") % e
 
         self.after(600000, self.get_headlines)
 class NewsHeadline(Frame):
