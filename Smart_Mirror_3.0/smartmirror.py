@@ -12,7 +12,6 @@ import praw
 from PIL import Image, ImageTk
 from contextlib import contextmanager
 
-LOCALE_LOCK = threading.Lock()
 
 ui_locale = ''
 time_format = 12 # 12 or 24
@@ -25,51 +24,40 @@ large_text_size = 28
 medium_text_size = 18
 small_text_size = 12
 
-@contextmanager
-def setlocale(name):
-    with LOCALE_LOCK:
-        saved = locale.setlocale(locale.LC_ALL)
-        try:
-            yield locale.setlocale(locale.LC_ALL, name)
-        finally:
-            locale.setlocale(locale.LC_ALL, saved)
 class Clock(Frame):
     def __init__(self, parent, *args, **kwargs):
         Frame.__init__(self, parent, bg='black')
-        # initialize time label
+        #Time Label
         self.time1 = ''
-        self.timeLbl = Label(self, font=('Helvetica', xlarge_text_size), fg="white", bg="black")
+        self.timeLbl = Label(self, font=(font_type, xlarge_text_size), fg=font_colour, bg="black")
         self.timeLbl.pack(side=TOP, anchor=E)
-        # initialize day of week
-        self.day_of_week1 = ''
-        self.dayOWLbl = Label(self, text=self.day_of_week1, font=('Helvetica', medium_text_size), fg="white", bg="black")
-        self.dayOWLbl.pack(side=TOP, anchor=E)
-        # initialize date label
+        #Day Of the Week label
+        self.weekday1 = ''
+        self.weekdayLbl = Label(self, font=(font_type,medium_text_size), fg=font_colour, bg="black")
+        self.weekdayLbl.pack(side=TOP,anchor=E)
+        #Date Label
         self.date1 = ''
-        self.dateLbl = Label(self, text=self.date1, font=('Helvetica', medium_text_size), fg="white", bg="black")
-        self.dateLbl.pack(side=TOP, anchor=E)
+        self.dateLbl = Label(self,font=(font_type,medium_text_size), fg=font_colour, bg="black")
+        self.dateLbl.pack(side=TOP,anchor=E)
         self.tick()
 
     def tick(self):
-        with setlocale(ui_locale):
-            if time_format == 12:
-                time2 = time.strftime('%I:%M %p') #hour in 12h format
-            else:
-                time2 = time.strftime('%H:%M') #hour in 24h format
-
-            day_of_week2 = time.strftime('%A')
-            date2 = time.strftime(date_format)
-            # if time string has changed, update it
-            if time2 != self.time1:
-                self.time1 = time2
-                self.timeLbl.config(text=time2)
-            if day_of_week2 != self.day_of_week1:
-                self.day_of_week1 = day_of_week2
-                self.dayOWLbl.config(text=day_of_week2)
-            if date2 != self.date1:
-                self.date1 = date2
-                self.dateLbl.config(text=date2)
-                self.timeLbl.after(200, self.tick)
+        #Set Clock
+        time2 = time.strftime('%H:%M')
+        if time2 != self.time1:
+            time1 = time2
+            self.timeLbl.config(text=time2)
+            self.timeLbl.after(200, self.tick)
+        # Set Day of the Week
+        weekday2 = time.strftime('%A')
+        if weekday2 != self.weekday1:
+            self.weekday1 = weekday2
+            self.weekdayLbl.config(text=weekday2)
+        # Set date
+        date2 = time.strftime("%d %b, %Y")
+        if date2 != self.date1:
+            self.date1 = date2
+            self.dateLbl.config(text=date2)
 class Weather(Frame):
     def __init__(self, parent, *args, **kwargs):
         Frame.__init__(self, parent, bg='black')
