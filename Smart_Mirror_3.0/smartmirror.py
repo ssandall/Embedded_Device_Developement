@@ -195,7 +195,7 @@ class Reddit(Frame):
                      user_agent='redditapi', username='Web_Hoon')
 
             subreddit = reddit.subreddit(SUBREDDIT_SELECTION)
-            top_subreddit = subreddit.hot(1)
+            top_subreddit = subreddit.hot(3)
 
             for submission in top_subreddit:
                 if not submission.stickied:
