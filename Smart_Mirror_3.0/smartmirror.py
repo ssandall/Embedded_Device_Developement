@@ -158,7 +158,7 @@ class News(Frame):
         except Exception as e:
             traceback.print_exc()
             print "Error: %s. Cannot get news." % e
-
+        #Refresh every 10 Minutes
         self.after(600000, self.get_headlines)
 class NewsHeadline(Frame):
     def __init__(self, parent, event_name=""):
