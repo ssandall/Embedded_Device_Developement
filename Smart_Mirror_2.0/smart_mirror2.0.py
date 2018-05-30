@@ -85,7 +85,7 @@ class Weather(Frame):
                            % (CHANNEL_ID, READ_API_KEY))
 
             response = requests.get(api_information)
-            data = json.loads(response)
+            data = response.json()
 
             tempval = "%.2f%s" % (float(str(data['field1'])), degree_sign)
             humidval = "%s%.2f%s" % ("Humidity ", float(str(data['field2'])), "%")
