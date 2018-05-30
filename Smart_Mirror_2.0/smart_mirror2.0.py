@@ -54,22 +54,25 @@ class Clock(Frame):
 class Weather(Frame):
     def __init__(self, parent, *args, **kwargs):
         Frame.__init__(self, parent, bg='black')
+
+        self.degreeFrm = Frame(self, bg="black")
+        self.degreeFrm.pack(side=TOP, anchor=W)
         #Temperature Label
         self.temperature = ''
-        self.temperatureLbl = Label(self, font=(font_type, xlarge_text_size), fg=font_colour, bg="black")
+        self.temperatureLbl = Label(self.degreeFrm, font=(font_type, xlarge_text_size), fg=font_colour, bg="black")
         self.temperatureLbl.pack(side=LEFT, anchor=N)
         #UV Level Label
         self.uv = ''
         self.uvLbl = Label(self, font=(font_type, large_text_size), fg=font_colour, bg="black")
-        self.uvLbl.pack(side=LEFT, anchor=N)
+        self.uvLbl.pack(side=TOP, anchor=W)
         #Humidity Label
         self.humidity = ''
         self.humidityLbl = Label(self, font=(font_type, medium_text_size),fg=font_colour,bg="black")
-        self.humidityLbl.pack(side=LEFT, anchor=N)
+        self.humidityLbl.pack(side=TOP, anchor=W)
         #Apparent Temperature Label
         self.apparenttemp = ''
         self.apparenttempLbl = Label(self, font=(font_type, medium_text_size), fg=font_colour, bg="black")
-        self.apparenttempLbl.pack(side=LEFT, anchor=N)
+        self.apparenttempLbl.pack(side=TOP, anchor=W)
 
         self.get_local_weather()
 
