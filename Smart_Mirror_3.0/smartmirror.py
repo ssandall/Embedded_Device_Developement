@@ -14,7 +14,7 @@ from contextlib import contextmanager
 
 #Font Variables
 font_type = 'Helvetica'
-font_colour = "White"
+font_colour = "Blue"
 xlarge_text_size = 48
 large_text_size = 30
 medium_text_size = 20
