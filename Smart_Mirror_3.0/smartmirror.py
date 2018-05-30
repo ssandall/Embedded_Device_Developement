@@ -228,7 +228,7 @@ class FullscreenWindow:
         self.news.pack(side=LEFT, anchor=S, padx=100, pady=60)
         # reddit
         self.reddit = Reddit(self.bottomFrame)
-        self.reddit.pack(side = RIGHT, anchor=S, padx=100, pady=60)
+        self.reddit.pack(side = LEFT, anchor=N, padx=100, pady=60)
 
     def toggle_fullscreen(self, event=None):
         self.state = not self.state  # Just toggling the boolean
