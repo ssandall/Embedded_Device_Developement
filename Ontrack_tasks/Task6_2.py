@@ -4,7 +4,7 @@ import time
 LedPin = 21
 
 def setup():
-  GPIO.setmode(GPIO.BOARD)
+  GPIO.setmode(GPIO.BCM)
   GPIO.setup(LedPin, GPIO.OUT)
   GPIO.output(LedPin, GPIO.HIGH)
 
