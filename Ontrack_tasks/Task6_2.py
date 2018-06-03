@@ -1,14 +1,27 @@
 import RPi.GPIO as GPIO
 import time
 
-try:
+LedPin = 16
 
-    while 1:
-        GPIO.setmode(GPIO.BOARD)
-        GPIO.setup(16, GPIO.OUT)
-        GPIO.output(16, GPIO.HIGH)
-        GPIO.output(16, GPIO.HIGH)
-        time.sleep(0.25)
+def setup():
+  GPIO.setmode(GPIO.BOARD)
+  GPIO.setup(LedPin, GPIO.OUT)
+  GPIO.output(LedPin, GPIO.HIGH)
 
-except KeyboardInterrupt:
-    GPIO.cleanup()
+def blink():
+  while True:
+    GPIO.output(LedPin, GPIO.HIGH)
+    time.sleep(1)
+    GPIO.output(LedPin, GPIO.LOW)
+    time.sleep(1)
+
+def destroy():
+  GPIO.output(LedPin, GPIO.LOW)
+  GPIO.cleanup()
+
+if __name__ == '__main__':
+  setup()
+  try:
+    blink()
+  except KeyboardInterrupt:
+    destroy()
